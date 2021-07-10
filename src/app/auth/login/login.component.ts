@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
     let email = form.value.email;
     let password = form.value.password;
-
+    this.isLoading = true;
     this.authService.login(email, password);
   }
 }
