@@ -9,9 +9,7 @@ const userRoutes = require("./routes/user");
 const app = express();
 
 mongoose
-    .connect(
-        "mongodb://localhost:27017/testdb"
-    )
+    .connect(process.env.MONGO_URL)
     .then(() => {
         console.log("Connected to database!");
     })
