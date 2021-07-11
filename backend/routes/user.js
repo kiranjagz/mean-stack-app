@@ -22,7 +22,7 @@ router.post("/signup", (req, res, next) => {
             })
             .catch(err => {
                 res.status(500).json({
-                    error: err
+                    message: "Invalid authenication credentials!"
                 });
             })
     });
@@ -36,7 +36,7 @@ router.post("/login", (req, res, next) => {
         .then(user => {
             if (!user) {
                 return res.status(401).json({
-                    message: "Auth Failed"
+                    message: "Cannot find user for that email address: " + req.body.email
                 });
             }
             fetchedUser = user;
@@ -45,7 +45,7 @@ router.post("/login", (req, res, next) => {
         .then(result => {
             if (!result) {
                 return res.status(401).json({
-                    message: "Auth Failed"
+                    message: "Crypt compare failed, please contact Bob :)"
                 });
             }
 
@@ -64,7 +64,7 @@ router.post("/login", (req, res, next) => {
         .catch(err => {
             console.log(err);
             return res.status(401).json({
-                message: "Auth Failed"
+                message: "Invalid login authenication credentials!"
             });
         });
 });
